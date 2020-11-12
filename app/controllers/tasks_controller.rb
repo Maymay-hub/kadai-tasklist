@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
 
   def create
-    @task = Task.new(message_params)
+    @task = Task.new(task_params)
 
     if @task.save
       flash[:success] = 'タスクを作成しました'
@@ -25,10 +25,6 @@ class TasksController < ApplicationController
       flash.now[:danger] = 'タスクを作成できませんでした'
       render :new
     end
-  end
-# Strong Parameter
-  def message_params
-    params.require(:task).permit(:content)
   end
 
 
@@ -55,7 +51,12 @@ class TasksController < ApplicationController
     @task.destroy
 
     flash[:success] = 'タスクを削除しました'
-    redirect_to tasks_url
+    redirect_to task_url
+  end
+
+# Strong Parameter
+  def task_params
+    params.require(:task).permit(:content)
   end
 
 end
