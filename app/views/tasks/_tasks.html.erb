@@ -1,11 +1,10 @@
 <ul class="list-unstyled">
-  <%# tasks.each do |task| %>
-
+  
           <% @tasks.each do |task| %>
           <li><%= link_to task.id, task %> : <%= task.status %> &gt; <%= task.content %></li>
           <% end %>
   
-  <%# end %>
+</ul>
+
   <%= link_to '新規タスクの投稿', new_task_path %>
   <%= paginate tasks %>
-</ul>
